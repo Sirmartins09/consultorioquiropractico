@@ -1,0 +1,42 @@
+// =============================================================================
+// MAPAS
+// =============================================================================
+
+@use 'sass:map';
+
+// -----------------------------------------------------------------------------
+// Mapa de estilos para botones ($botones)
+// -----------------------------------------------------------------------------
+$botones:(
+    fondo-botones:#77bbff,
+    letras-boton:#ffffff,
+    hover-boton:#0056b3,
+    borde-botones:none,
+    borde-radius:10px,
+    transicion-boton:background-color 0.3s ease,
+    size-boton:16px,
+    padding-boton: 10px 20px
+);
+
+// -----------------------------------------------------------------------------
+// Mapa de configuraciones Flexbox ($flex)
+// -----------------------------------------------------------------------------
+$flex: (
+  alineacion: center,
+  justificacion: center,
+  direccion: column,
+  entre: space-between
+);
+
+// -----------------------------------------------------------------------------
+// Mapa de colores de fondo ($fondos)
+// -----------------------------------------------------------------------------
+
+$fondos: (
+  site-header: #3674B5,
+  main: #578FCA,
+  py-4: #3A6A9A,
+  franja-turno: #3A6A9A,
+  subluxaciones: #fffefe,
+  franja-nosotros: rgb(18, 41, 168)
+);

@@ -1,0 +1,71 @@
+// =============================================================================
+// HEADER STYLES
+// 
+// Estilos para el encabezado del sitio. Contiene:
+// - Barra de navegación principal
+// - Estilos del logo
+// - Menú responsive con efecto hamburguesa
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Importaciones
+// -----------------------------------------------------------------------------
+@use 'sass:map';
+@use '../utilities/maps' as *;
+
+// -----------------------------------------------------------------------------
+// Estructura principal del header
+// -----------------------------------------------------------------------------
+
+.site-header {
+    .navbar{
+
+        display: flex;
+        align-items: map.get($flex, alineacion);
+        justify-content: map.get($flex, entre);
+        padding: 10px 20px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Estilos del Logo
+// ----------------------------------------------------------------------------
+.navbar-brand{
+    
+img {
+    height: 60px;
+    width: 60px;
+    
+}
+}
+
+// -----------------------------------------------------------------------------
+// Navegación principal
+// -----------------------------------------------------------------------------
+nav {
+// Lista de elementos del menú
+ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+
+// Elementos individuales del menú
+    .nav-item {
+  // Enlaces del menú
+    .nav-link {
+        color: white;
+        font-weight: bold;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+
+        &:hover {
+        color: #baeb0b;
+        }
+    }
+    }
+}
+}

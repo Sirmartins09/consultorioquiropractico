@@ -1,0 +1,90 @@
+// -----------------------------------------------------------------------------
+// Importaciones
+// -----------------------------------------------------------------------------
+@use "../base/variables" as *;
+@use 'sass:map';
+@use '../utilities/maps' as *;
+
+/* SECCIÓN BLOG Boton de las Cards leer mas*/
+.read-more {
+    display: inline-block;
+    margin-top: auto;
+    padding: map.get($botones, padding-boton);
+    background:map.get($botones, fondo-botones);
+    color: map.get($botones, letras-boton);
+    text-decoration: none;
+    border: map.get($botones, borde-botones);
+    border-radius: map.get($botones, borde-radius);
+    font-size: map.get($botones,  size-boton);
+    text-align: center;
+    width: 90%; 
+    box-sizing: border-box; 
+    align-self: center;
+    transition: map.get($botones, transicion-boton);
+    &:hover {
+        background: map.get($botones, hover-boton);
+    }
+
+}
+
+
+
+/*FRANJA DE TURNOS|sacar turno main*/
+
+.boton-turno {
+    display: inline-block;
+    padding: map.get($botones, padding-boton);
+    background-color: map.get($botones, fondo-botones);
+    color: map.get($botones, letras-boton);
+    text-decoration: none;
+    border:map.get($botones, borde-botones);
+    border-radius: map.get($botones, borde-radius);
+    font-size: map.get($botones,  size-boton);
+    transition: map.get($botones, transicion-boton);
+    &:hover {
+        background:map.get($botones,hover-boton);
+    }
+}
+
+
+/*SECCIÓN "SABER MÁS"| boton saber mas*/
+.saber-mas-btn {
+    display: inline-block;
+    padding: map.get($botones, padding-boton);
+    background-color:map.get($botones, fondo-botones);
+    color:map.get($botones, letras-boton);
+    text-decoration: none; 
+    border: map.get($botones, borde-botones);
+    border-radius:map.get($botones, borde-radius);
+    cursor: pointer;
+    transition: map.get($botones, transicion-boton);
+    &:hover {
+        background-color:map.get($botones, hover-boton); 
+    }
+
+}
+
+
+
+/*FORMULARIO TURNOS"| Boton resevar turno*/
+.btn {
+    background-color:map.get($botones, fondo-botones);
+    color:map.get($botones, letras-boton);
+    border: map.get($botones, borde-botones);
+    padding: map.get($botones, padding-boton);
+    border-radius:map.get($botones, borde-radius);
+    cursor: pointer;
+    transition: map.get($botones, transicion-boton);
+    &hover{
+        background-color:map.get($botones, hover-boton);
+    }
+}
+
+/*FORMULARIO CONTACTO"| Boton Enviar*/
+    .btn-contacto{
+    @extend.btn;
+    transition: map.get($botones, transicion-boton);
+    &:hover{
+        background-color:map.get($botones, hover-boton);
+    }
+    }

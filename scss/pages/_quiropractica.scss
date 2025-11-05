@@ -1,0 +1,197 @@
+
+// =============================================================================
+// QUIROPRACTICA STYLES
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Importaciones
+// -----------------------------------------------------------------------------
+@use 'sass:map';
+@use '../utilities/maps' as *;
+@use '../utilities/mixin' as mixin;
+@use"../base/variables" as *;
+
+// -----------------------------------------------------------------------------
+// Animación para entrada suave de contenido
+// -----------------------------------------------------------------------------
+@keyframes fadeSlide {
+    from {
+    opacity: 0;
+    transform: translateY(30px);
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}
+main{
+// ---------------------------------------------------------------------------
+// Sección de portada con imagen de fondo y título
+// ---------------------------------------------------------------------------
+    .info-seccion {
+        position: relative;
+        height: 60vh;
+        background: url('../img/quiropractica.jpg') no-repeat center center/cover;
+        display: flex;
+        align-items: map.get($flex,alineacion);
+        justify-content: map.get($flex,justificacion);
+        text-align: $texto_centro;
+        color: white;
+        padding: 20px;
+        
+    
+        .info-contenido {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            animation: fadeSlide 3s ease-out forwards;
+            opacity: 0;
+            h1{
+                @include mixin.titulo(32px, bold, 40px, #ffff);
+            }
+        }
+    }
+
+  // ---------------------------------------------------------------------------
+  // Sección explicativa "¿Qué es la quiropraxia?"
+  // ---------------------------------------------------------------------------
+    .seccion-quiropractica {
+        text-align: $texto_izquierda;
+        display: flex;
+        align-items: map.get($flex,alineacion);
+        justify-content: map.get($flex,entre);
+        gap: $gap;
+        margin: 20px;
+        padding: 25px; 
+        
+        h2{ @include mixin.titulo(28px, bold, 36px,#ffffff);
+    
+        }
+        
+    }
+
+  // ---------------------------------------------------------------------------
+  // Sección informativa sobre Subluxaciones (título + tarjetas)
+  // ---------------------------------------------------------------------------
+    .subluxaciones {
+    
+        padding: 30px;
+        text-align: $texto_centro;
+    
+        .apartado {
+            text-align: $texto_centro;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto; 
+            h2 {
+                margin-bottom: 15px;
+                @include mixin.titulo(28px, bold, 36px, #ca541a);
+            }
+    
+            p {
+                font-size: 18px;
+                color:$color-texto;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+        }
+    
+    
+        .info-card {
+            display: flex;
+            justify-content: map.get($flex,justificacion);
+            gap: 20px;
+    
+            .sub-card {
+                width: 30%;
+                text-align: $texto_centro;
+                padding: 20px; 
+                
+                h3{ @include mixin.titulo(24px, normal, 32px, #0c0c0b);
+                }
+            }
+        }
+    }
+
+  // ---------------------------------------------------------------------------
+  // Sección Medicina China reutilizando estilos de Quiropraxia
+  // ---------------------------------------------------------------------------
+    .seccion-medicina-china {
+        @extend .seccion-quiropractica;
+        text-align: $texto-derecha;
+    
+        h2 {
+        @include mixin.titulo(28px, bold, 36px, #ffffff);
+        }
+    
+        p {
+        color: $color-texto;
+        }
+    
+
+    }
+
+  // ---------------------------------------------------------------------------
+  // Sección de cierre con texto final y galería de imágenes superpuestas
+  // ---------------------------------------------------------------------------
+    .cierre {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        padding: 50px 0;
+        overflow-x: hidden;
+        max-width: 1200px;
+        margin:0 auto;
+    
+        .cierre-texto {
+        width: 500px; 
+        text-align: left;
+        margin-left: 5px;
+        
+        h2{
+            text-align: center;
+            color: #ffffff;
+        }
+    }
+}
+
+  // ---------------------------------------------------------------------------
+  // Imágenes finales superpuestas (Quiropraxia + Medicina China)
+  // --------------------------------------------------------------------------- 
+    .cierre-imagenes {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        gap: 0; 
+        margin: 50px 20px 50px 0;
+        width: fit-content;
+        overflow-x: hidden;
+    
+        .img-cierre1, 
+        .img-cierre2 {
+        position: relative;
+        width: 250px; 
+    
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+    }
+    
+        .img-cierre1 {
+        z-index: 2;
+        margin-right: -40px; 
+        }
+    
+        .img-cierre2 {
+        z-index: 1;
+        width: 200px;
+        
+        }
+    }
+}

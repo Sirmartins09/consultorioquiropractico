@@ -1,0 +1,124 @@
+
+// =============================================================================
+// TURNOS STYLES
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Importaciones
+// -----------------------------------------------------------------------------
+@use '../utilities/mixin' as mixin;
+@use 'sass:map';
+@use '../utilities/maps' as *;
+@use"../base/variables" as *;
+
+// -----------------------------------------------------------------------------
+// Estilos para la página de "Reserva tu turno"
+// -----------------------------------------------------------------------------
+
+
+main.main {
+    // Título centrado
+    .text-center {
+    text-align: $texto_centro;
+    margin-top: 50px;
+
+    h1 {
+        @include mixin.titulo(32px, bold, 40px, #ffff);
+    }
+}
+
+// ==============================
+// FORMULARIO DE TURNOS
+// ==============================
+
+.contenedor-turnos {  // 🔥 CORREGIDO: "contenedor" no "container"
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;           // Reducido para mejor visualización
+  padding: 2rem;
+ 
+  margin: 0 auto;
+
+  .row {
+    display: flex;
+    justify-content: center;   // Centra el row
+    width: 100%;
+    max-width: 1200px;        // Ancho máximo
+
+    .section-turnos {
+      margin-bottom: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .formulario-turno {
+        background-color: #ffffff;  // Color temporal para prueba
+        color: #333;                // Color temporal
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 600px;           // Ancho máximo del formulario
+        cursor: pointer;
+
+        .mb-3 {
+          margin-bottom: 1.5rem;
+
+          label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+          }
+
+          input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            
+            &:focus {
+              border-color: #007bff;
+              box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+              outline: none;
+            }
+          }
+        }
+
+        button {
+          margin-top: 20px;
+          width: 100%;
+          padding: 0.75rem;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          font-size: 1.1rem;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+      }
+    }
+  }
+}
+
+    // Columna derecha: imagen
+        // .image-container {
+        // flex: 1;
+        // display: flex;
+        // justify-content: map.get($flex, justificacion);
+
+        // img {
+        //     width: 100%;
+        //     max-width: 800px;
+        //     height: auto;
+        //         }
+        //     }
+        }
+

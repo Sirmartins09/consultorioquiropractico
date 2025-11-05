@@ -1,0 +1,94 @@
+
+// =============================================================================
+// CONTACTO STYLES
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Importaciones
+// -----------------------------------------------------------------------------
+@use 'sass:map';
+@use '../utilities/maps' as *;
+@use"../base/variables" as *;
+
+main{
+
+    // Sección de tarjetas de contacto (Dirección, Teléfono, Email)
+    .formulario {
+        display: flex;
+        justify-content: map.get($flex,justificacion);
+        align-items: map.get($flex,alineacion);
+        gap: $gap;
+        padding: 20px; 
+        flex-wrap: wrap;
+        
+        .card-contacto {
+            display: flex;
+            align-items: map.get($flex,alineacion);
+            justify-content: map.get($flex,justificacion);
+            flex-direction: map.get($flex,direccion);
+            text-align: $texto_centro;
+            padding: 20px;
+            background-color: $color-formulario;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            
+            
+            .contenido {
+                display: flex;
+                flex-direction:map.get($flex,direccion);
+                align-items: map.get($flex,alineacion);
+                gap: 10px;
+                color: #ffffff;
+                
+            }
+            
+        }
+    
+    }
+ // Contenedor general que agrupa formulario + mapa
+    .contenedor {
+        display: flex;
+        justify-content: map.get($flex,entre);
+        align-items: stretch; 
+        gap: $gap; 
+        padding: 30px; 
+        width: 100%; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+
+// Estilos del formulario
+        .formulario-contacto{
+            width: 48%; 
+            background: #1E3A8A; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            border: 2px solid #000; 
+            border-radius: 10px; 
+    
+            .contact-form{
+                padding: 20px; 
+                
+                .form-control {
+                    width: 100%;
+                    margin-bottom: 15px;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                }
+            }
+        }
+    }
+
+  // Contenedor del mapa de Google  
+    .contenedor-mapa {
+                width: 48%;
+                background: #1e3a8a;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border: 2px solid #000;
+                border-radius: 10px;
+        
+                .contact-map {
+                padding: 20px;
+        }
+    }
+}    

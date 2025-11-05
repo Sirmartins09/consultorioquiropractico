@@ -1,0 +1,276 @@
+
+// =============================================================================
+// MAIN STYLES
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Importaciones
+// -----------------------------------------------------------------------------
+@use 'sass:map';
+@use '../utilities/maps' as *;
+@use '../utilities/each';
+@use '../utilities/mixin';
+@use '../base/variables' as *;
+
+// -----------------------------------------------------------------------------
+// Estructura principal
+// -----------------------------------------------------------------------------
+
+main {
+padding: 50px 0;
+
+  // Título principal
+h1 {
+    text-align: $texto_centro;
+    padding: 10px 50px;
+    @include mixin.titulo(32px, bold, 40px, #ffff);
+    
+}
+
+// Icono de YouTube (componente)
+.youtube-icon {
+    display: flex;
+    align-items: map.get($flex, alineacion);
+    justify-content: map.get($flex, justificacion);
+    font-size: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+    gap: 10px;
+
+    &:hover {
+    color: #3c4741;
+    }
+}
+ // Sección de bienvenida
+.bienvenido {
+    text-align: $texto_centro;
+    padding: 50px 60px;
+
+    h2 {
+    @include mixin.titulo(28px, bold, 36px, #010102);
+    }
+
+    p {
+    color: $color-texto;
+    font-size: 16px;
+    line-height: 1.6;
+    }
+}
+
+  // Sección de tarjetas con imágenes
+.card-imagenes {
+    padding: 30px 20px;
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+
+    .col-12 {
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+            .card-img-top {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+
+            .card-text {
+                font-size: 16px;
+                font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ============================================================================
+ * SECCIÓN BLOG
+ * Estilos para la sección de artículos/blog
+ * ============================================================================
+ */
+.blog {
+padding: 20px;
+
+.titulo-blog {
+    text-align: $texto_centro;
+    padding: 30px;
+    margin: 20px 0;
+    @include mixin.titulo(28px, bold, 36px, #ffffff);
+}
+  // Contenedor grid para las cards del blog
+.blog-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+
+// Cards individuales del blog
+    .blog-card {
+    display: flex;
+    flex-direction: map.get($flex, direccion);
+    justify-content: map.get($flex, entre);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #578fca, #a8d5e2);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    height: auto;
+    text-align: center;
+
+    h3 {
+        @include mixin.titulo(24px, normal, 32px, #ffff);
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+    p{
+        color: $color-texto;
+
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// SECCIÓN SERVICIOS (Acordeones)
+// -----------------------------------------------------------------------------
+.card-container {
+background-image: url('../img/main.jpeg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+padding: 20px;
+border: 2px solid #ccc;
+
+// Título de servicios
+#servicios {
+    text-align: $texto_centro;
+    padding: 20px;
+    @include mixin.titulo(28px, bold, 36px, #ffffff);
+}
+
+ // Contenedor grid para acordeones
+.accordion-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap;
+    padding: 10px;
+    justify-content: center;
+    max-width: 90%;
+    margin: 0 auto;
+}
+}
+// Componente Acordeón
+    .card-container {
+    padding: 50px 20px;
+
+    h2 {
+        text-align: $texto_centro;
+        margin-bottom: 20px;
+    
+    }
+
+    .accordion-card {
+    .accordion {
+        .accordion-item {
+            margin-bottom: 10px;
+
+        .accordion-header {
+            .accordion-button {
+                font-weight: bold;
+                color: #ffffff;
+                background-color: #3a6a9a;
+            
+
+                &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+
+        .accordion-collapse {
+            .accordion-body {
+                background-color: #ffffff;
+                padding: 20px;
+                font-size: 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// FRANJA DE TURNOS
+// -----------------------------------------------------------------------------
+.franja-turno {
+padding: 40px 20px;
+
+    .contenido-franja {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: map.get($flex, alineacion);
+        justify-content: map.get($flex, entre);
+        gap: 20px;
+
+// Texto descriptivo
+        .texto-franja {
+            flex: 1;
+
+            h2 {
+                margin-bottom: 15px;
+                @include mixin.titulo(28px, bold, 36px, #ffffff);
+        
+            }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: $color-texto;
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// SECCIÓN "SABER MÁS"
+// ----------------------------------------------------------------------------
+.saber-mas {
+display: flex;
+text-align: $texto_centro;
+align-items: map.get($flex, alineacion);
+justify-content: map.get($flex, justificacion);
+margin-top: 30px;
+
+    .contenido-mas {
+        padding: 30px;
+
+        h2 {
+            @include mixin.titulo(28px, bold, 36px, #ffff);
+    }
+
+            p {
+                color: #0c0c0c;
+            }
+        }
+}

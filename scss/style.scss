@@ -1,0 +1,52 @@
+// =============================
+// Base
+// =============================
+@use "base/generales";     // Estilos globales (reset, tipografías, etc.)
+@use "base/variables";     // Variables de colores, fuentes, etc.
+
+
+// =============================
+// Utilities
+// =============================
+@use "utilities/maps";     // Mapas de SASS (colores, márgenes, etc.)
+@use "utilities/each";     // Uso de @each para aplicar estilos con mapas
+@use "utilities/mixin";    // Mixins reutilizables
+
+// =============================
+// Componentes
+// =============================
+@use "componentes/header"; // Estilos del header
+@use "componentes/footer"; // Estilos del footer
+@use "componentes/buttons";// Estilos de botones
+
+// =============================
+// Layout
+// =============================
+@use "layout/main";        // Estructura general del <main>
+
+// =============================
+// Páginas
+// =============================
+@use "pages/contacto";     // Estilos específicos para la página de contacto
+@use "pages/nosotros";     // Estilos para la sección Nosotros
+@use "pages/quiropractica";// Estilos para la página de quiropraxia
+@use "pages/turnos";       // Estilos para turnos
+
+// =============================
+// Base
+// =============================
+@use "base/queries";       // Media queries
+
+
+
+
+
+
+
+
+
+
+
+
+
+

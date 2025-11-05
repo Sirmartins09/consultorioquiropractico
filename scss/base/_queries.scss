@@ -1,0 +1,266 @@
+// =============================================================================
+// MEDIA QUERIES - RESPONSIVE DESIGN
+// 
+// Adaptaciones para tablets (768px) y móviles (320px)
+// =============================================================================
+@use 'sass:map';
+@use '../utilities/maps' as *;
+
+/* ============================================================================
+ * TABLETS (max-width: 768px)
+ * ============================================================================
+ */
+@media (max-width: 768px) {
+
+// -------------------------------
+// HEADER - Adaptación para tablet
+// -------------------------------
+    .site-header {
+        .navbar{
+    
+            display: flex;
+            align-items: map.get($flex, alineacion);
+            justify-content: map.get($flex, entre);
+            padding: 10px 20px;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+// -------------------------------
+// MAIN - Ajustes de layout
+// -------------------------------
+
+// Blog: cambia a 1 columna
+    .blog-container {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+    .blog-card {
+        width: 90%;
+        max-width: 100%;
+        }
+    }
+
+// Acordeón: 1 columna
+    .accordion-card {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+    }
+// Franja de turnos: apilamiento vertical
+    .franja-turno {
+    .contenido-franja {
+        flex-direction: column;
+        text-align: center;
+        margin: 10px;
+    }
+    }
+
+    .texto-franja {
+    padding: 20px;
+    }
+ // Imagen en franja
+    .imagen-franja {
+    img {
+        max-width: 100%;
+        width: 50%;
+    }
+    }
+
+    .contenido-mas {
+    p {
+        padding: 30px;
+    }
+    }
+
+// -------------------------------
+// PÁGINAS ESPECÍFICAS
+// -------------------------------
+// Página Quiropráxia
+.cierre-texto{
+    h2 {
+
+        text-align: center;
+    }
+    p{
+        text-align: center;
+    }
+}
+ // Página Contacto
+    .formulario {
+    gap: 15px;
+    padding: 20px 10px;
+    }
+
+    .card-contacto {
+    width: 45%;
+    max-width: 300px;
+    padding: 15px;
+    }
+
+    .col-md-4 {
+    p {
+        margin: 20px;
+    }
+    }
+}
+
+/* ============================================================================
+ * MÓVILES (max-width: 320px)
+ * ============================================================================
+ */
+
+@media (max-width: 480px) {
+
+    // -------------------------------
+    // HEADER - Adaptación móvil
+    // -------------------------------    
+    
+        .nav {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        }
+    
+    // -------------------------------
+    // MAIN - Ajustes móvil
+    // -------------------------------
+        main {
+        h1 {
+            font-size: 32px;
+        }
+        }
+    
+        .logo {
+        img {
+            max-width: 80px;
+        }
+        }
+    // Cards de imágenes apiladas
+        .card-imagenes {
+        flex-direction: column;
+        }
+    
+        .blog .blog-container {
+            grid-template-columns: 1fr;
+            max-width: 95%;
+            .blog-card {
+                width: 100%;
+            }
+        }
+    
+    
+        .card-container {
+        .accordion-card {
+            grid-template-columns: 1fr;
+        }
+        }
+    
+        .franja-turno {
+        .contenido-franja {
+            flex-direction: column;
+            text-align: center;
+        }
+        }
+    
+        .imagen-franja {
+        img {
+            max-width: 100%;
+        }
+        }
+    
+    // -------------------------------
+    // PÁGINAS ESPECÍFICAS - Móvil
+    // -------------------------------
+    
+    // Página Contacto
+    main {
+        .contenedor {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    
+        .formulario-contacto,
+        .contenedor-mapa {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    
+        .contact-form {
+            padding: 15px;
+    
+            .form-control {
+            width: 100% !important;
+            display: block;
+            font-size: 16px;
+            padding: 12px;
+            }
+    
+            textarea.form-control {
+            resize: vertical;
+            }
+    
+            button {
+            width: 100%;
+                }
+            }
+        }
+    }
+
+    // Página Quiropráxia
+    main{
+
+        .info-contenido {
+        h1 {
+            text-align: center;
+            padding: 10px;
+        }
+        }
+    
+        .seccion-quiropractica,
+        .seccion-medicina-china {
+        flex-direction: column;
+        text-align: center;
+        }
+    
+        .seccion-medicina-china{
+        img {
+            max-width: 320px;
+            width: 280px;
+        }
+        }
+    
+        .seccion-quiropractica {
+        .imagen {
+            display: none;
+        }
+        }
+    
+        .sub-card {
+        display: none;
+        }
+        .cierre{
+            flex-direction: column;
+            padding: 30px 20px;
+            .cierre-texto{
+                margin: 0;
+                text-align: center;
+                width: 100%;
+                padding: 20px;
+            }
+            .cierre-imagenes{
+                padding: 20px;
+                width: 300px;
+                margin: 30px auto;
+            }
+        }
+    }
+        //Página Nosotros
+        #carouselExample {
+        display: none;
+        }
+    
+        //Página Turno
+        .image-container {
+        padding: 20px;
+        }
+}
