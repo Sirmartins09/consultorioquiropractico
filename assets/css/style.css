@@ -34,6 +34,78 @@ html, body {
   background-color: rgb(18, 41, 168);
 }
 
+.swal2-popup {
+  border-radius: 1rem !important;
+  font-family: "Poppins", sans-serif !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  animation: fadeIn 0.4s ease-in-out !important;
+}
+
+.swal2-title {
+  color: #046424 !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+}
+
+.swal2-html-container {
+  color: #333 !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.swal2-confirm {
+  background-color: #046424 !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.2rem !important;
+  transition: background-color 0.3s !important;
+}
+.swal2-confirm:hover {
+  background-color: #058a34 !important;
+}
+
+.swal2-cancel {
+  background-color: #6c757d !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.6rem 1.2rem !important;
+}
+.swal2-cancel:hover {
+  background-color: #5a6268 !important;
+}
+
+.swal2-icon.swal2-success {
+  border-color: #046424 !important;
+  color: #046424 !important;
+}
+
+.swal2-icon.swal2-error {
+  border-color: #c0392b !important;
+  color: #c0392b !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-color: #e67e22 !important;
+  color: #e67e22 !important;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+  background: #ffffff;
+  backdrop-filter: blur(6px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 .site-header .navbar {
   display: flex;
   align-items: center;
@@ -738,83 +810,427 @@ main .cierre-imagenes .img-cierre2 {
   width: 200px;
 }
 
-main.main .text-center {
-  text-align: center;
-  margin-top: 50px;
-}
-main.main .text-center h1 {
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 40px;
-  color: white;
-}
-main.main .contenedor-turnos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  padding: 2rem;
-  margin: 0 auto;
-}
-main.main .contenedor-turnos .row {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px;
-}
-main.main .contenedor-turnos .row .section-turnos {
-  margin-bottom: 30px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno {
-  background-color: #ffffff;
-  color: #333;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 600px;
-  cursor: pointer;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno .mb-3 {
-  margin-bottom: 1.5rem;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno .mb-3 label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #333;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno .mb-3 input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno .mb-3 input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-main.main .contenedor-turnos .row .section-turnos .formulario-turno button:hover {
-  background-color: #0056b3;
+body {
+  background: linear-gradient(135deg, #e6f4ea 0%, #f8fff9 100%);
 }
 
+.confirmar-turno {
+  text-align: center;
+}
+
+.contenedor-formulario {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+.contenedor-formulario h1 {
+  font-size: 2rem;
+  color: #046424;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.contenedor-formulario h2 {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+.contenedor-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.contenedor-formulario form .campo {
+  text-align: left;
+}
+.contenedor-formulario form .campo label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.contenedor-formulario form .campo input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.contenedor-formulario form .campo input:focus {
+  outline: none;
+  border-color: #046424;
+  box-shadow: 0 0 5px rgba(4, 100, 36, 0.3);
+}
+.contenedor-formulario form .btn {
+  background-color: #046424;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.contenedor-formulario form .btn:hover {
+  background-color: #058a34;
+  transform: scale(1.03);
+}
+.contenedor-formulario form .btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .contenedor-formulario {
+    padding: 1.5rem;
+  }
+  .contenedor-formulario h1 {
+    font-size: 1.7rem;
+  }
+  .contenedor-formulario form {
+    gap: 1rem;
+  }
+}
+/* ==============================
+   ESTILOS - MIS TURNOS
+   ============================== */
+/* Fuente y fondo general */
+body {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: #f4f8fb;
+  color: #0f172a;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.turnos-main {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Título principal */
+.turnos-main h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* Lista de turnos */
+#lista-turnos {
+  text-align: left;
+  margin-top: 25px;
+}
+
+/* Cada turno */
+.turno-item {
+  background-color: #f9fcff;
+  border: 1px solid #e0e7ef;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.turno-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto dentro de cada turno */
+.turno-item p {
+  margin: 6px 0;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+/* Botón cancelar individual */
+.btn-cancelar {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.25s, transform 0.2s;
+}
+
+.btn-cancelar:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Botón eliminar todos los turnos */
+#btn-borrar-todo {
+  background-color: #0ea5a4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.25s, transform 0.2s;
+}
+
+#btn-borrar-todo:hover {
+  background-color: #0c8a8a;
+  transform: translateY(-2px);
+}
+
+/* Botón volver al inicio */
+.boton-volver {
+  margin-top: 30px;
+}
+
+.btn-volver {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.25s, transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-volver:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Mensaje sin turnos */
+#lista-turnos p {
+  text-align: center;
+  font-size: 1rem;
+  color: #64748b;
+  margin-top: 10px;
+}
+
+.contenedor-turno {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+.contenedor-turno h1.confirmar-titulo {
+  color: #046424;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.contenedor-turno h2 {
+  color: #444;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.contenedor-turno .advertencia {
+  font-size: 0.95rem;
+  background-color: #f6f6f6;
+  color: #555;
+  padding: 1rem;
+  border-left: 5px solid #046424;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+#datos-paciente {
+  background-color: #f3faf5;
+  border: 1px solid #d4edda;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+#datos-paciente h3 {
+  color: #046424;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+#datos-paciente p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.vanilla-calendar {
+  margin: 0 auto 2rem auto;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+.vanilla-calendar .vanilla-calendar-header {
+  background-color: #5f99f0;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.8rem;
+}
+.vanilla-calendar .vanilla-calendar-day__btn {
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.vanilla-calendar .vanilla-calendar-day__btn:hover {
+  background-color: #058a34 !important;
+  color: #fff !important;
+}
+
+#horarios h2 {
+  color: #046424;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+#horarios .lista-horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+#horarios .btn-hora {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #0d6efd;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#horarios .btn-hora:hover {
+  background-color: #058a34;
+  transform: scale(1.05);
+}
+#horarios .btn-hora:active {
+  transform: scale(0.97);
+}
+#horarios .btn-hora.ocupado {
+  background-color: #6c757d;
+  color: #ddd;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+#horarios .btn-hora.ocupado:hover {
+  transform: none;
+  background-color: #6c757d;
+}
+
+.leyenda-turnos {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.leyenda-turnos .item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+.leyenda-turnos .item .cuadro {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+.leyenda-turnos .item.disponible .cuadro {
+  background-color: #0d6efd;
+}
+.leyenda-turnos .item.ocupado .cuadro {
+  background-color: #6c757d;
+}
+.leyenda-turnos .item.seleccionado .cuadro {
+  background-color: #28a745;
+}
+
+/* Botón "Atrás" alineado a la derecha */
+.boton-atrás {
+  text-align: right; /* alinea el contenido a la derecha */
+  margin: 10px 20px; /* margen superior e inferior y separación del borde derecho */
+}
+
+/* Enlace dentro del botón */
+.boton-atrás a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #0ea5a4; /* color base (teal) */
+  color: #fff;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto hover */
+.boton-atrás a:hover {
+  background-color: #0c8a8a; /* tono más oscuro */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .contenedor-turno {
+    padding: 1.5rem;
+  }
+  .vanilla-calendar {
+    max-width: 100%;
+  }
+  .lista-horarios {
+    gap: 0.6rem;
+  }
+  .btn-hora {
+    flex: 1 1 45%;
+  }
+}
 /* ============================================================================
  * TABLETS (max-width: 768px)
  * ============================================================================
@@ -976,5 +1392,3 @@ main.main .contenedor-turnos .row .section-turnos .formulario-turno button:hover
     padding: 20px;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

@@ -18,6 +18,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <!-- AOS (Animate On Scroll) para animaciones al hacer scroll -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <!-- =========================
+       ESTILOS Y LIBRERÍAS
+  ========================== -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+
+  <!-- =========================
+       LIBRERÍAS JS
+  ========================== -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <!-- Tu script principal -->
+  <script defer src="../js/turnos.js"></script>
 </head>
 
 <body>
@@ -71,85 +84,34 @@
 <!-- ============================== -->
 <!-- Contenido principal -->
 <!-- ============================== -->
-<main class="main">
-    <div class="text-center">
-        <h1>Reserva tu turno</h1>
-    </div>
 
-<!-- ============================== -->
-<!--Formulario Turno-->
-<!-- ============================== -->
-<div class="container mt-5 contenedor-turnos">
-    <div class="row align-items-center">
-
-<!-- columna del  formulario -->
-<div class="col-md-6 section-turnos">
-    <form id="appointmentForm" class="mt-4 formulario-turno">
-
-<!--Entrada Nombre y Apellido-->
-    <div class="mb-3 ">
-        <label for="name" class="form-label">Nombre y Apellido</label>
-        <input type="text" class="form-control" id="name" required>
-    </div>
-
-<!--Entrada Email-->
-    <div class="mb-3 ">
-        <label for="email" class="form-label">Correo Electrónico</label>
-        <input type="email" class="form-control" id="email" required>
-    </div>
-
-<!--Entrada Teléfono-->
-    <div class="mb-3 ">
-        <label for="phone" class="form-label">Teléfono</label>
-        <input type="tel" class="form-control" id="phone" required>
-    </div>
-
-<!--Entrada Selección de Fecha-->
-    <div class="mb-3">
-        <label for="date" class="form-label">Selecciona la fecha</label>
-        <input type="date" class="form-control" id="date" required>
-    </div>
-
-<!--Entrada Selección de Hora-->
-    <div class="mb-3">
-        <label for="time" class="form-label">Selecciona la hora</label>
-        <input type="time" class="form-control" id="time" required>
-    </div>
-
-<!--Boton Turno-->
-        <button type="button" class="btn btn-primary" onclick="bookAppointment()">Reservar turno</button>
-    </form>
-</div>
-
-<!-- ============================== -->
-<!-- columna de la imagen -->
-<!-- ============================== -->
-        <!-- <div class=" col-md-6 image-container animate__animated animate__fadeInRight">
-                    <img src="../assets/img/turnos-horarios.jpg" alt="Horarios" class="img-fluid">
-        </div>
-    </div>
-</div> -->
-
-<!-- Script para enviar datos del formulario a WhatsApp -->
-        <script>
-            //Obtiene y limpia los valores ingresados en los campos del formulario
-            function bookAppointment() {
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const date = document.getElementById('date').value;
-                const time = document.getElementById('time').value;
     
-                if (name && email && phone && date && time) {
-                    const message = `Hola, quiero reservar un turno para ${name} el ${date} a las ${time}. Mi correo es ${email} y mi teléfono es ${phone}.`;
-                    const whatsappURL = `https://wa.me/542617167533?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappURL, '_blank');
-                } else {
-                    alert('Por favor, completa todos los campos.');
-                }
-            }
-        </script>
-    </main>
+
+
+  <main class="contenedor-formulario">
+    <h1 class="confirmar-titulo">Registro de Paciente</h1>
+    <h2>Complete sus datos personales para solicitar un turno médico</h2>
+  <h1>Reserva tu turno</h1>
+
+  <form id="form-turno">
+    <div class="campo">
+      <label for="nombre">Nombre completo</label>
+      <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required />
+    </div>
+
+    <div class="campo">
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" placeholder="Ej: juan@gmail.com" required />
+    </div>
+
+    <div class="campo">
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" placeholder="Ej: 3812345678" required />
+    </div>
+
+    <button type="submit" class="btn">Continuar</button>
+  </form>
+</main>
 
 <!-- ============================== -->  
 <!--        Pie de página           -->

@@ -1,0 +1,84 @@
+// ==============================
+// ESTILOS PERSONALIZADOS PARA SWEETALERT2
+// ==============================
+
+.swal2-popup {
+  border-radius: 1rem !important;
+  font-family: "Poppins", sans-serif !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  animation: fadeIn 0.4s ease-in-out !important;
+}
+
+.swal2-title {
+  color: #046424 !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+}
+
+.swal2-html-container {
+  color: #333 !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+}
+
+.swal2-confirm {
+  background-color: #046424 !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.2rem !important;
+  transition: background-color 0.3s !important;
+
+  &:hover {
+    background-color: #058a34 !important;
+  }
+}
+
+.swal2-cancel {
+  background-color: #6c757d !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.6rem 1.2rem !important;
+
+  &:hover {
+    background-color: #5a6268 !important;
+  }
+}
+
+// ==============================
+// ICONOS PERSONALIZADOS
+// ==============================
+.swal2-icon.swal2-success {
+  border-color: #046424 !important;
+  color: #046424 !important;
+}
+
+.swal2-icon.swal2-error {
+  border-color: #c0392b !important;
+  color: #c0392b !important;
+}
+
+.swal2-icon.swal2-warning {
+  border-color: #e67e22 !important;
+  color: #e67e22 !important;
+}
+
+.swal2-container.swal2-center > .swal2-popup {
+  background: #ffffff;
+  backdrop-filter: blur(6px);
+}
+
+// ==============================
+// ANIMACIÓN DE ENTRADA
+// ==============================
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

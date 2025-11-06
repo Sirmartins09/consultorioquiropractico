@@ -1,0 +1,130 @@
+/* ==============================
+   ESTILOS - MIS TURNOS
+   ============================== */
+
+/* Fuente y fondo general */
+body {
+  font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background-color: #f4f8fb;
+  color: #0f172a;
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
+.turnos-main {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Título principal */
+.turnos-main h1 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #007bff;
+  border-bottom: 3px solid #007bff;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* Lista de turnos */
+#lista-turnos {
+  text-align: left;
+  margin-top: 25px;
+}
+
+/* Cada turno */
+.turno-item {
+  background-color: #f9fcff;
+  border: 1px solid #e0e7ef;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.turno-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto dentro de cada turno */
+.turno-item p {
+  margin: 6px 0;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+/* Botón cancelar individual */
+.btn-cancelar {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-top: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.25s, transform 0.2s;
+}
+
+.btn-cancelar:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Botón eliminar todos los turnos */
+#btn-borrar-todo {
+  background-color: #0ea5a4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.25s, transform 0.2s;
+}
+
+#btn-borrar-todo:hover {
+  background-color: #0c8a8a;
+  transform: translateY(-2px);
+}
+
+/* Botón volver al inicio */
+.boton-volver {
+  margin-top: 30px;
+}
+
+.btn-volver {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.25s, transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-volver:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Mensaje sin turnos */
+#lista-turnos p {
+  text-align: center;
+  font-size: 1rem;
+  color: #64748b;
+  margin-top: 10px;
+}

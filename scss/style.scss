@@ -10,7 +10,8 @@
 // =============================
 @use "utilities/maps";     // Mapas de SASS (colores, márgenes, etc.)
 @use "utilities/each";     // Uso de @each para aplicar estilos con mapas
-@use "utilities/mixin";    // Mixins reutilizables
+@use "utilities/mixin";  
+@use "utilities/alerts";  // Mixins reutilizables
 
 // =============================
 // Componentes
@@ -30,7 +31,9 @@
 @use "pages/contacto";     // Estilos específicos para la página de contacto
 @use "pages/nosotros";     // Estilos para la sección Nosotros
 @use "pages/quiropractica";// Estilos para la página de quiropraxia
-@use "pages/turnos";       // Estilos para turnos
+@use "pages/turnos";   // Estilos para turnos
+@use "pages/misturnos";  //Estilos Mis Turnos
+@use "pages/fechayhora"; //Etilos para Fecha y Hora (calendarios)
 
 // =============================
 // Base
