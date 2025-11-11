@@ -264,7 +264,7 @@ function formatearFecha(fecha) {
 // ENVIAR TURNOS A GOOGLE SHEETS
 // ==============================
 function enviarTurnoAGoogleSheets(turno) {
-  const urlScript = "https://script.google.com/macros/s/AKfycbweiH7lxuA80H0vKExlfES0MNIbl1qLG9AhTasJSbEf72eGNGbyfhTdY9A50Y5IRagS/exec";
+  const urlScript = "https://script.google.com/macros/s/AKfycbwWxAY6C-5c51LjMe6HaYk6xiRxVkLWR_OAn7l5CR9hOXvwLnvI2V9k-g_JQorYxpJ0hw/exec";
 
   fetch(urlScript, {
     method: "POST",
