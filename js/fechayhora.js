@@ -264,7 +264,25 @@ function formatearFecha(fecha) {
 // ENVIAR TURNOS A GOOGLE SHEETS
 // ==============================
 function enviarTurnoAGoogleSheets(turno) {
+  // 👉 pegá acá la URL del Apps Script (la que te dio al implementar)
   const urlScript = "https://script.google.com/macros/s/AKfycbwWxAY6C-5c51LjMe6HaYk6xiRxVkLWR_OAn7l5CR9hOXvwLnvI2V9k-g_JQorYxpJ0hw/exec";
+
+  fetch(urlScript, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(turno),
+  })
+  .then(() => console.log("✅ Turno enviado a Google Sheets:", turno))
+  .catch((error) => console.error("❌ Error al enviar a Google Sheets:", error));
+
+}
+
+// ==============================
+// ENVIAR TURNOS A GOOGLE SHEETS
+// ==============================
+function enviarTurnoAGoogleSheets(turno) {
+  https://script.google.com/macros/s/AKfycbw6m93eYupnD_w9g7x7sMdb46907zjo2nrXt9FwrhddNAXSE4dRXDEfjW7BH5FQ4kThsw/exec
 
   fetch(urlScript, {
     method: "POST",
