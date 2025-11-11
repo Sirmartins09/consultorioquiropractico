@@ -59,16 +59,10 @@ fetch(URL)
       },
       actions: {
         clickDay(event, self) {
-          // La librería a veces "des-selecciona" y deja el array vacío
           const seleccion = self.selectedDates[0];
-
-          // Si está vacío, NO quiero que se desmarque visualmente,
-          // así que uso la última fecha seleccionada
           const fechaSeleccionada = seleccion || ultimaFechaSeleccionada;
+          if (!fechaSeleccionada) return;
 
-          if (!fechaSeleccionada) return; // por seguridad
-
-          // guardo como última seleccionada
           ultimaFechaSeleccionada = fechaSeleccionada;
           localStorage.setItem("fechaSeleccionada", fechaSeleccionada);
 
@@ -76,7 +70,6 @@ fetch(URL)
           resaltarSeleccionado(fechaSeleccionada);
         },
         changeToMonth() {
-          // cuando cambias de mes, volvemos a pintar los días disponibles
           setTimeout(() => {
             marcarDiasDisponibles(fechasDisponibles);
             if (ultimaFechaSeleccionada) {
@@ -92,8 +85,6 @@ fetch(URL)
     // ✅ Marcar los días disponibles al inicio
     setTimeout(() => {
       marcarDiasDisponibles(fechasDisponibles);
-
-      // si había una fecha guardada, la mostramos marcada y cargamos horarios
       if (ultimaFechaSeleccionada && fechasDisponibles.includes(ultimaFechaSeleccionada)) {
         resaltarSeleccionado(ultimaFechaSeleccionada);
         mostrarHorarios(ultimaFechaSeleccionada, diasDisponibles, doctor, turnosOcupados);
@@ -133,7 +124,6 @@ function marcarDiasDisponibles(fechasDisponibles) {
     const fecha = celda.dataset.calendarDay || celda.dataset.calendarDate;
 
     if (fechasDisponibles.includes(fecha)) {
-      // ✅ Día disponible (azul)
       celda.style.backgroundColor = "#007bff";
       celda.style.color = "#fff";
       celda.style.borderRadius = "90%";
@@ -141,7 +131,6 @@ function marcarDiasDisponibles(fechasDisponibles) {
       celda.style.pointerEvents = "auto";
       celda.style.opacity = "1";
     } else {
-      // 🚫 Día no disponible
       celda.style.opacity = "0.3";
       celda.style.pointerEvents = "none";
       celda.style.backgroundColor = "";
@@ -150,7 +139,6 @@ function marcarDiasDisponibles(fechasDisponibles) {
       celda.style.fontWeight = "";
     }
 
-    // siempre limpio el contorno, el resaltado lo maneja resaltarSeleccionado()
     celda.style.outline = "none";
     celda.style.boxShadow = "none";
   });
@@ -158,20 +146,16 @@ function marcarDiasDisponibles(fechasDisponibles) {
 
 function resaltarSeleccionado(fechaSeleccionada) {
   const celdas = document.querySelectorAll(".vanilla-calendar-day__btn");
-
-  // 🔹 Limpio solo el contorno de todos (no los colores)
   celdas.forEach(celda => {
     celda.style.outline = "none";
     celda.style.boxShadow = "none";
   });
 
-  // 🔹 Busco la celda que coincide con la fecha seleccionada
   const seleccionado = document.querySelector(
     `.vanilla-calendar-day__btn[data-calendar-date="${fechaSeleccionada}"]`
   );
 
   if (seleccionado) {
-    // Dejo el fondo azul (de marcarDiasDisponibles) y le agrego un marco verde
     seleccionado.style.outline = "3px solid #155724";
     seleccionado.style.outlineOffset = "2px";
     seleccionado.style.boxShadow = "0 0 0 2px rgba(21, 87, 36, 0.4)";
@@ -235,7 +219,14 @@ function mostrarHorarios(fechaSeleccionada, diasDisponibles, doctor, turnosOcupa
 // GUARDAR Y BLOQUEAR TURNOS
 // ==============================
 function guardarTurno(doctor, fecha, hora) {
-  const turno = { doctor, fecha, hora, paciente: paciente.nombre };
+  const turno = { 
+    doctor, 
+    fecha, 
+    hora, 
+    paciente: paciente.nombre, 
+    email: paciente.email, 
+    telefono: paciente.telefono 
+  };
 
   const turnosGuardados = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
   const turnosOcupados = JSON.parse(localStorage.getItem("turnosOcupados")) || [];
@@ -245,6 +236,9 @@ function guardarTurno(doctor, fecha, hora) {
 
   localStorage.setItem("turnosGuardados", JSON.stringify(turnosGuardados));
   localStorage.setItem("turnosOcupados", JSON.stringify(turnosOcupados));
+
+  // ✅ Enviar a Google Sheets
+  enviarTurnoAGoogleSheets(turno);
 
   Swal.fire({
     icon: "success",
@@ -264,4 +258,20 @@ function formatearFecha(fecha) {
   const mes = fecha.substring(5, 7);
   const dia = fecha.substring(8, 10);
   return `${dia}/${mes}/${año}`;
+}
+
+// ==============================
+// ENVIAR TURNOS A GOOGLE SHEETS
+// ==============================
+function enviarTurnoAGoogleSheets(turno) {
+  const urlScript = "https://script.google.com/macros/s/AKfycbweiH7lxuA80H0vKExlfES0MNIbl1qLG9AhTasJSbEf72eGNGbyfhTdY9A50Y5IRagS/exec";
+
+  fetch(urlScript, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(turno),
+  })
+  .then(() => console.log("✅ Turno enviado a Google Sheets:", turno))
+  .catch((error) => console.error("❌ Error al enviar a Google Sheets:", error));
 }
