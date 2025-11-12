@@ -1,19 +1,22 @@
 // ==============================
 // CONFIGURACIÓN
 // ==============================
-const URL = "../db/data.json";
+const URL_FIREBASE = "https://turnos-consultorio-f423b-default-rtdb.firebaseio.com"; // 🔗 CAMBIAR por tu URL exacta
 const contenedorTurnos = document.getElementById("lista-turnos");
 const btnBorrarTodo = document.getElementById("btn-borrar-todo");
 
 // ==============================
-// CARGAR Y MOSTRAR TURNOS GUARDADOS
+// AL CARGAR LA PÁGINA
 // ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  mostrarTurnos();
+document.addEventListener("DOMContentLoaded", async () => {
+  await mostrarTurnos();
 });
 
-function mostrarTurnos() {
-  const turnosGuardados = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
+// ==============================
+// MOSTRAR TURNOS GUARDADOS DESDE FIREBASE
+// ==============================
+async function mostrarTurnos() {
+  const turnosGuardados = await obtenerTurnosDeFirebase(); // 🔥 ahora lee del servidor
 
   if (turnosGuardados.length === 0) {
     contenedorTurnos.innerHTML = "<p>No tenés turnos registrados actualmente.</p>";
@@ -36,12 +39,11 @@ function mostrarTurnos() {
     contenedorTurnos.appendChild(div);
   });
 
-  // Asignar eventos a los botones "Cancelar este turno"
-  const botonesCancelar = document.querySelectorAll(".btn-cancelar");
-  botonesCancelar.forEach(boton => {
+  // Asignar eventos de cancelación
+  document.querySelectorAll(".btn-cancelar").forEach((boton, index) => {
     boton.addEventListener("click", () => {
-      const index = boton.dataset.index;
-      cancelarTurno(index);
+      const turno = turnosGuardados[index];
+      cancelarTurno(turno);
     });
   });
 }
@@ -49,38 +51,54 @@ function mostrarTurnos() {
 // ==============================
 // CANCELAR UN TURNO INDIVIDUAL
 // ==============================
-function cancelarTurno(index) {
-  const turnosGuardados = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
-  const turnosOcupados = JSON.parse(localStorage.getItem("turnosOcupados")) || [];
-
-  const turnoEliminado = turnosGuardados.splice(index, 1)[0];
-
-  // Eliminar también de turnosOcupados
-  const nuevosOcupados = turnosOcupados.filter(
-    t =>
-      !(t.doctor === turnoEliminado.doctor &&
-        t.fecha === turnoEliminado.fecha &&
-        t.hora === turnoEliminado.hora)
-  );
-
-  localStorage.setItem("turnosGuardados", JSON.stringify(turnosGuardados));
-  localStorage.setItem("turnosOcupados", JSON.stringify(nuevosOcupados));
-
+function cancelarTurno(turnoEliminado) {
   Swal.fire({
-    icon: "success",
-    title: "Turno cancelado",
-    text: `Se eliminó el turno del ${formatearFecha(turnoEliminado.fecha)} a las ${turnoEliminado.hora}.`,
-    timer: 2000,
-    showConfirmButton: false,
-  });
+    title: "¿Cancelar turno?",
+    text: `¿Querés cancelar el turno del ${formatearFecha(turnoEliminado.fecha)} a las ${turnoEliminado.hora}?`,
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí, cancelar",
+    cancelButtonText: "No",
+  }).then((r) => {
+    if (r.isConfirmed) {
+      eliminarTurnoDeFirebase(turnoEliminado.doctor, turnoEliminado.fecha, turnoEliminado.hora);
 
-  mostrarTurnos(); // actualizar lista
+      // Actualizar localStorage (por compatibilidad)
+      const turnosGuardados = JSON.parse(localStorage.getItem("turnosGuardados")) || [];
+      const filtrados = turnosGuardados.filter(
+        t => !(t.doctor === turnoEliminado.doctor && t.fecha === turnoEliminado.fecha && t.hora === turnoEliminado.hora)
+      );
+      localStorage.setItem("turnosGuardados", JSON.stringify(filtrados));
+
+      Swal.fire({
+        icon: "success",
+        title: "Turno cancelado",
+        text: `Se eliminó el turno del ${formatearFecha(turnoEliminado.fecha)} a las ${turnoEliminado.hora}.`,
+        timer: 2000,
+        showConfirmButton: false,
+        willClose: () => mostrarTurnos(), // 🔁 se actualiza automáticamente
+      });
+    }
+  });
 }
 
 // ==============================
 // CANCELAR TODOS LOS TURNOS
 // ==============================
-btnBorrarTodo.addEventListener("click", () => {
+btnBorrarTodo.addEventListener("click", async () => {
+  const turnosGuardados = await obtenerTurnosDeFirebase();
+
+  if (turnosGuardados.length === 0) {
+    Swal.fire({
+      icon: "info",
+      title: "Sin turnos",
+      text: "No hay turnos para eliminar.",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+    return;
+  }
+
   Swal.fire({
     title: "¿Eliminar todos los turnos?",
     text: "Esta acción no se puede deshacer.",
@@ -90,25 +108,61 @@ btnBorrarTodo.addEventListener("click", () => {
     cancelButtonText: "Cancelar",
   }).then((r) => {
     if (r.isConfirmed) {
+      // Borrar cada turno de Firebase
+      turnosGuardados.forEach(t => eliminarTurnoDeFirebase(t.doctor, t.fecha, t.hora));
+
+      // Limpiar localStorage
       localStorage.removeItem("turnosGuardados");
       localStorage.removeItem("turnosOcupados");
+
       Swal.fire({
         icon: "success",
         title: "Todos los turnos fueron cancelados",
         timer: 2000,
         showConfirmButton: false,
+        willClose: () => mostrarTurnos(),
       });
-      mostrarTurnos();
     }
   });
 });
 
 // ==============================
-// FORMATEAR FECHA
+// FUNCIONES AUXILIARES
 // ==============================
+
+// 🔥 Obtener todos los turnos desde Firebase
+async function obtenerTurnosDeFirebase() {
+  const res = await fetch(`${URL_FIREBASE}/turnos.json`);
+  const data = await res.json();
+
+  if (!data) return [];
+
+  const turnos = [];
+  for (const doctor in data) {
+    for (const fecha in data[doctor]) {
+      for (const hora in data[doctor][fecha]) {
+        const turno = data[doctor][fecha][hora];
+        turnos.push(turno);
+      }
+    }
+  }
+  return turnos;
+}
+
+// 🔥 Eliminar turno de Firebase
+function eliminarTurnoDeFirebase(doctor, fecha, hora) {
+  const ruta = `/turnos/${encodeURIComponent(doctor)}/${encodeURIComponent(fecha)}/${encodeURIComponent(hora)}.json`;
+
+  fetch(`${URL_FIREBASE}${ruta}`, { method: "DELETE" })
+    .then(res => {
+      if (!res.ok) throw new Error("Error al eliminar turno en Firebase");
+      console.log(`🗑️ Turno eliminado en Firebase: ${doctor} ${fecha} ${hora}`);
+    })
+    .catch(err => console.error("❌ Error al eliminar turno:", err));
+}
+
+// Formatear fecha (de AAAA-MM-DD a DD/MM/AAAA)
 function formatearFecha(fecha) {
-  const año = fecha.substring(0, 4);
-  const mes = fecha.substring(5, 7);
-  const dia = fecha.substring(8, 10);
+  const [año, mes, dia] = fecha.split("-");
   return `${dia}/${mes}/${año}`;
 }

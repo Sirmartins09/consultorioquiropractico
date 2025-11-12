@@ -240,6 +240,23 @@ function guardarTurno(doctor, fecha, hora) {
  // ✅ Enviar a Firebase
 enviarTurnoAFirebase(turno);
 
+// ==============================
+// ELIMINAR TURNO DE FIREBASE
+// ==============================
+function eliminarTurnoDeFirebase(doctor, fecha, hora) {
+  const urlBase = "https://turnos-consultorio-f423b-default-rtdb.firebaseio.com"; // tu URL base
+  const ruta = `/turnos/${encodeURIComponent(doctor)}/${encodeURIComponent(fecha)}/${encodeURIComponent(hora)}.json`;
+
+  fetch(`${urlBase}${ruta}`, {
+    method: "DELETE"
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Error al eliminar turno de Firebase");
+    console.log(`🗑️ Turno eliminado de Firebase: ${doctor} ${fecha} ${hora}`);
+  })
+  .catch(err => console.error("❌ Error al eliminar de Firebase:", err));
+}
+
 
   Swal.fire({
     icon: "success",
@@ -284,3 +301,24 @@ function enviarTurnoAFirebase(turno) {
   .catch(err => console.error("❌ Error al guardar en Firebase:", err));
 }
 
+// ==============================
+// OBTENER TURNOS GUARDADOS DESDE FIREBASE
+// ==============================
+async function obtenerTurnosDeFirebase() {
+  const res = await fetch(`${URL_FIREBASE}/turnos.json`);
+  const data = await res.json();
+
+  if (!data) return [];
+
+  const turnos = [];
+  for (const doctor in data) {
+    for (const fecha in data[doctor]) {
+      for (const hora in data[doctor][fecha]) {
+        const turno = data[doctor][fecha][hora];
+        turnos.push(turno);
+      }
+    }
+  }
+
+  return turnos;
+}
