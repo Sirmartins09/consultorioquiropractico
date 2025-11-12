@@ -237,8 +237,9 @@ function guardarTurno(doctor, fecha, hora) {
   localStorage.setItem("turnosGuardados", JSON.stringify(turnosGuardados));
   localStorage.setItem("turnosOcupados", JSON.stringify(turnosOcupados));
 
-  // ✅ Enviar a Google Sheets
-  enviarTurnoAGoogleSheets(turno);
+ // ✅ Enviar a Firebase
+enviarTurnoAFirebase(turno);
+
 
   Swal.fire({
     icon: "success",
@@ -260,37 +261,26 @@ function formatearFecha(fecha) {
   return `${dia}/${mes}/${año}`;
 }
 
-// ==============================
-// ENVIAR TURNOS A GOOGLE SHEETS
-// ==============================
-function enviarTurnoAGoogleSheets(turno) {
-  // 👉 pegá acá la URL del Apps Script (la que te dio al implementar)
-  const urlScript = "https://script.google.com/macros/s/AKfycbwWxAY6C-5c51LjMe6HaYk6xiRxVkLWR_OAn7l5CR9hOXvwLnvI2V9k-g_JQorYxpJ0hw/exec";
 
-  fetch(urlScript, {
-    method: "POST",
-    mode: "no-cors",
+// ==============================
+// ENVIAR TURNOS A FIREBASE
+// ==============================
+function enviarTurnoAFirebase(turno) {
+  // 🔗 URL base de tu Realtime Database (CAMBIALA por la tuya)
+  const urlBase = "https://turnos-consultorio-f423b-default-rtdb.firebaseio.com/";
+
+  // usamos doctor/fecha/hora como estructura para evitar duplicados
+  const ruta = `/turnos/${encodeURIComponent(turno.doctor)}/${encodeURIComponent(turno.fecha)}/${encodeURIComponent(turno.hora)}.json`;
+
+  fetch(`${urlBase}${ruta}`, {
+    method: "PUT", // así se guarda directamente con esa clave
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(turno),
+    body: JSON.stringify(turno)
   })
-  .then(() => console.log("✅ Turno enviado a Google Sheets:", turno))
-  .catch((error) => console.error("❌ Error al enviar a Google Sheets:", error));
-
-}
-
-// ==============================
-// ENVIAR TURNOS A GOOGLE SHEETS
-// ==============================
-function enviarTurnoAGoogleSheets(turno) {
-  const urlScript = "https://script.google.com/macros/s/AKfycbw6m93eYupnD_w9g7x7sMdb46907zjo2nrXt9FwrhddNAXSE4dRXDEfjW7BH5FQ4kThsw/exec";
-
-  fetch(urlScript, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(turno),
+  .then(res => {
+    if (!res.ok) throw new Error("Error al guardar en Firebase");
+    console.log("✅ Turno guardado en Firebase:", turno);
   })
-  .then(() => console.log("✅ Turno enviado a Google Sheets:", turno))
-  .catch((error) => console.error("❌ Error al enviar a Google Sheets:", error));
+  .catch(err => console.error("❌ Error al guardar en Firebase:", err));
 }
 
