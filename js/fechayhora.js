@@ -282,7 +282,7 @@ function enviarTurnoAGoogleSheets(turno) {
 // ENVIAR TURNOS A GOOGLE SHEETS
 // ==============================
 function enviarTurnoAGoogleSheets(turno) {
-  https://script.google.com/macros/s/AKfycbw6m93eYupnD_w9g7x7sMdb46907zjo2nrXt9FwrhddNAXSE4dRXDEfjW7BH5FQ4kThsw/exec
+  const urlScript = "https://script.google.com/macros/s/AKfycbw6m93eYupnD_w9g7x7sMdb46907zjo2nrXt9FwrhddNAXSE4dRXDEfjW7BH5FQ4kThsw/exec";
 
   fetch(urlScript, {
     method: "POST",
@@ -293,3 +293,4 @@ function enviarTurnoAGoogleSheets(turno) {
   .then(() => console.log("✅ Turno enviado a Google Sheets:", turno))
   .catch((error) => console.error("❌ Error al enviar a Google Sheets:", error));
 }
+
