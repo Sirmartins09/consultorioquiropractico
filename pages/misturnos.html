@@ -45,6 +45,54 @@
 </head>
 
 <body>
+  <!-- ============================== -->    
+<!--     Encabezado del sitio       -->
+<!-- ============================== -->
+<header class="site-header">
+    <nav class="navbar navbar-expand-md navbar-light px-3">
+    <div class="container-fluid">
+
+        <!-- Logo a la izquierda -->
+        <a class="navbar-brand" href="../index.html">
+        <img src="../assets/img/logo-consultorio.webp" alt="Logo del consultorio de quiropraxia" height="50">
+        </a>
+
+        <!-- Botón hamburguesa para pantallas chicas -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- ============================== -->  
+        <!--      Menú de Navegación        -->
+        <!-- ============================== --> 
+        <div class="collapse navbar-collapse" id="menuPrincipal">
+        <ul class="navbar-nav ms-auto mt-3 mt-md-0 nav nav-tabs">
+            <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../pages/quiropractica.html">Quiropractica</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../#servicios">Servicios</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../pages/contactos.html">Contactos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../pages/nosotros.html">Nosotros</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link active" href="../pages/turnos.html">Turnos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="../pages/misturnos.html">Mis Turnos</a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+</header>
   <main class="turnos-main container py-4">
     <h1 class="text-center mb-4">📅 Mis Turnos</h1>
 
@@ -59,7 +107,7 @@
         <i class="fas fa-trash-alt"></i> Cancelar todos los turnos
       </button>
 
-      <a href="../index.html" class="btn btn-secondary">
+      <a href="../index.html" class="boton-volver">
         <i class="fas fa-home"></i> Volver al inicio
       </a>
     </div>
