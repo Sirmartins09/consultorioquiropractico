@@ -116,8 +116,8 @@ html, body {
 }
 
 .navbar-brand img {
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
 }
 
 nav ul {
@@ -552,18 +552,6 @@ main {
   /* ===============================
     Sección: Nosotros
    =============================== */
-  /* ===============================
-    Sección: Misión y Visión
-   =============================== */
-  /* ===============================
-    Sección: Filosofía de Trabajo
-   =============================== */
-  /* ===============================
-    Sección: Instalaciones y Tecnología
-     =============================== */
-  /* ===============================
-    Sección: Carrusel del Consultorio
-     =============================== */
 }
 main .franja-nosotros {
   animation: slideUp 1s ease-out forwards;
@@ -582,6 +570,11 @@ main .franja-nosotros .nosotros h1 {
 }
 main .franja-nosotros .nosotros p {
   color: #ffffff;
+}
+main {
+  /* ===============================
+    Sección: Misión y Visión
+   =============================== */
 }
 main .mision-vision {
   display: flex;
@@ -605,6 +598,14 @@ main .mision-vision .vision {
   transition: all 0.3s ease-in-out;
   padding: 20px;
   text-align: center;
+}
+main .mision-vision .mision:hover,
+main .mision-vision .vision:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+main .mision-vision .mision,
+main .mision-vision .vision {
   text-align: center;
   width: 300px;
   border: 1px solid #c0c0c0;
@@ -615,10 +616,10 @@ main .mision-vision .vision {
   transform-style: preserve-3d;
   transition: transform 0.6s;
 }
-main .mision-vision .mision:hover,
-main .mision-vision .vision:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+main {
+  /* ===============================
+    Sección: Filosofía de Trabajo
+   =============================== */
 }
 main .filosofia {
   max-width: 1100px;
@@ -634,6 +635,11 @@ main .filosofia h2 {
 main .filosofia ul li strong {
   font-weight: bold;
 }
+main {
+  /* ===============================
+    Sección: Instalaciones y Tecnología
+     =============================== */
+}
 main .instalaciones {
   max-width: 1100px;
   margin: 0 auto;
@@ -647,6 +653,11 @@ main .instalaciones h2 {
 }
 main .instalaciones ul li strong {
   font-weight: bold;
+}
+main {
+  /* ===============================
+    Sección: Carrusel del Consultorio
+     =============================== */
 }
 main .carrusel-consultorio #carouselExample {
   max-width: 1100px;
@@ -1392,3 +1403,5 @@ body {
     padding: 20px;
   }
 }
+
+/*# sourceMappingURL=style.css.map */
