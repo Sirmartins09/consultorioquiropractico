@@ -94,6 +94,9 @@ function eliminarTurno(fecha, hora) {
             title: "Turno eliminado",
             timer: 1500,
             showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didClose: () => cargarTurnos(),
           });
           cargarTurnos();
         })
@@ -120,6 +123,9 @@ function marcarAtendido(fecha, hora) {
         title: "Turno marcado como atendido",
         timer: 1500,
         showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didClose: () => cargarTurnos(),
       });
       cargarTurnos();
     })
