@@ -96,9 +96,8 @@ function eliminarTurno(fecha, hora) {
             showConfirmButton: false,
             allowOutsideClick: false,
             allowEscapeKey: false,
-            didClose: () => cargarTurnos(),
+            didClose: () => cargarTurnos() // 🔁 solo se actualiza una vez, al cerrar la alerta
           });
-          cargarTurnos();
         })
         .catch(err => console.error("❌ Error al eliminar:", err));
     }
@@ -125,9 +124,8 @@ function marcarAtendido(fecha, hora) {
         showConfirmButton: false,
         allowOutsideClick: false,
         allowEscapeKey: false,
-        didClose: () => cargarTurnos(),
+        didClose: () => cargarTurnos() // ✅ solo se ejecuta una vez
       });
-      cargarTurnos();
     })
     .catch(err => console.error("❌ Error al actualizar:", err));
 }
