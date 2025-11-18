@@ -10,6 +10,27 @@ const datosPacienteEl = document.getElementById("datos-paciente");
 let ultimaFechaSeleccionada = localStorage.getItem("fechaSeleccionada") || null;
 
 // ==============================
+// LIMPIEZA AUTOMÁTICA DE LOCALSTORAGE
+// ==============================
+function limpiarLocalStorage() {
+
+  // ❌ YA NO SE USA PARA BLOQUEAR HORARIOS
+  localStorage.removeItem("turnosOcupados");
+
+  // ❌ fecha seleccionada guardada de visitas anteriores
+  localStorage.removeItem("fechaSeleccionada");
+
+  // 🧹 SI QUERÉS limpiar los turnos personales cuando ya no existan en Firebase
+  // lo dejo preparado por si más adelante querés hacer sincronización total:
+  // localStorage.removeItem("turnosGuardados");
+
+  console.log("🧽 LocalStorage limpiado sin afectar turnos personales.");
+}
+
+// llamar a la limpieza cada vez que se entra a la página
+limpiarLocalStorage()
+
+// ==============================
 // MOSTRAR DATOS DEL PACIENTE
 // ==============================
 const paciente = JSON.parse(localStorage.getItem("datosPaciente"));
